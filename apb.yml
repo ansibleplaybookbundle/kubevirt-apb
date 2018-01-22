@@ -1,0 +1,13 @@
+version: 1.0
+name: kubevirt-apb
+description: APB for managing KubeVirt deployments
+bindable: False
+async: optional
+metadata:
+  displayName: kubevirt
+plans:
+  - name: default
+    description: Default deployment plan for kubevirt-apb
+    free: True
+    metadata: {}
+    parameters: []
