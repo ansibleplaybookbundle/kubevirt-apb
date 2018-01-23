@@ -1,0 +1,74 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    kubevirt.io: libvirt
+  name: libvirt
+  namespace: kube-system
+spec:
+  template:
+    metadata:
+      labels:
+        kubevirt.io: libvirt
+      name: libvirt
+    spec:
+      containers:
+      - command:
+        - /libvirtd.sh
+        image: kubevirt/libvirt-kubevirt:{{ tag }}
+        imagePullPolicy: IfNotPresent
+        name: libvirtd
+        ports:
+        - containerPort: 16509
+          hostPort: 16509
+        securityContext:
+          privileged: true
+          runAsUser: 0
+        volumeMounts:
+        - mountPath: /host-dev
+          name: host-dev
+        - mountPath: /host-sys
+          name: host-sys
+        - mountPath: /var/lib/libvirt
+          name: libvirt-data
+        - mountPath: /var/run/libvirt
+          name: libvirt-runtime
+        - mountPath: /var/run/kubevirt
+          name: virt-share-dir
+        - mountPath: /var/run/kubevirt-private
+          name: virt-private-dir
+      - command:
+        - /usr/sbin/virtlogd
+        - -f
+        - /etc/libvirt/virtlogd.conf
+        image: kubevirt/libvirt-kubevirt:{{ tag }}
+        imagePullPolicy: IfNotPresent
+        name: virtlogd
+        volumeMounts:
+        - mountPath: /var/run/libvirt
+          name: libvirt-runtime
+      hostIPC: true
+      hostNetwork: true
+      hostPID: true
+      securityContext:
+        runAsUser: 0
+      serviceAccountName: kubevirt-infra
+      volumes:
+      - hostPath:
+          path: /var/lib/libvirt-container
+        name: libvirt-data
+      - hostPath:
+          path: /var/run/libvirt
+        name: libvirt-runtime
+      - hostPath:
+          path: /dev
+        name: host-dev
+      - hostPath:
+          path: /sys
+        name: host-sys
+      - hostPath:
+          path: /var/run/kubevirt
+        name: virt-share-dir
+      - hostPath:
+          path: /var/run/kubevirt-private
+        name: virt-private-dir

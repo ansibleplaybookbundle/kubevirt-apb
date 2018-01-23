@@ -10,4 +10,8 @@ plans:
     description: Default deployment plan for kubevirt-apb
     free: True
     metadata: {}
-    parameters: []
+    parameters:
+      - name: tag
+        title: Kubevirt Version
+        type: string
+        default: v0.2.0
