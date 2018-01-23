@@ -1,0 +1,55 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    kubevirt.io: virt-handler
+  name: virt-handler
+  namespace: kube-system
+spec:
+  template:
+    metadata:
+      labels:
+        kubevirt.io: virt-handler
+      name: virt-handler
+    spec:
+      containers:
+      - command:
+        - /virt-handler
+        - -v
+        - '3'
+        - --libvirt-uri
+        - qemu:///system
+        - --hostname-override
+        - $(NODE_NAME)
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: kubevirt/virt-handler:{{ tag }}
+        imagePullPolicy: IfNotPresent
+        name: virt-handler
+        ports:
+        - containerPort: 8185
+          hostPort: 8185
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /var/run/libvirt
+          name: libvirt-runtime
+        - mountPath: /var/run/kubevirt
+          name: virt-share-dir
+        - mountPath: /var/run/kubevirt-private
+          name: virt-private-dir
+      hostPID: true
+      serviceAccountName: kubevirt-infra
+      volumes:
+      - hostPath:
+          path: /var/run/libvirt
+        name: libvirt-runtime
+      - hostPath:
+          path: /var/run/kubevirt
+        name: virt-share-dir
+      - hostPath:
+          path: /var/run/kubevirt-private
+        name: virt-private-dir
