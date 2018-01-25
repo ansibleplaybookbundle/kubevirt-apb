@@ -1,67 +1,19 @@
 ---
-- name: Creating ClusterRole kubevirt-infra
-  k8s_v1beta1_cluster_role:
-    name: kubevirt-infra
-    namespace: "{{ namespace}}"
-    state: present
-    src: templates/ClusterRole_kubevirt-infra.yml.j2
-- name: Creating ServiceAccount kubevirt-infra
-  k8s_v1_service_account:
-    name: kubevirt-infra
-    namespace: "{{ namespace}}"
-    state: present
-    src: templates/ServiceAccount_kubevirt-infra.yml.j2
-- name: Creating ServiceAccount kubevirt-admin
-  k8s_v1_service_account:
-    name: kubevirt-admin
-    namespace: "{{ namespace}}"
-    state: present
-    src: templates/ServiceAccount_kubevirt-admin.yml.j2
-- name: Creating ClusterRoleBinding kubevirt-infra
-  k8s_v1beta1_cluster_role_binding:
-    name: kubevirt-infra
-    namespace: "{{ namespace}}"
-    state: present
-    src: templates/ClusterRoleBinding_kubevirt-infra.yml.j2
-- name: Creating ClusterRoleBinding kubevirt-infra-cluster-admin
-  k8s_v1beta1_cluster_role_binding:
-    name: kubevirt-infra-cluster-admin
-    namespace: "{{ namespace}}"
-    state: present
-    src: templates/ClusterRoleBinding_kubevirt-infra-cluster-admin.yml.j2
-- name: Creating CustomResourceDefinition virtualmachines.kubevirt.io
-  k8s_v1beta1_custom_resource_definition:
-    name: virtualmachines.kubevirt.io
-    namespace: "{{ namespace}}"
-    state: present
-    src: templates/CustomResourceDefinition_virtualmachines.kubevirt.io.yml.j2
-- name: Creating CustomResourceDefinition migrations.kubevirt.io
-  k8s_v1beta1_custom_resource_definition:
-    name: migrations.kubevirt.io
-    namespace: "{{ namespace}}"
-    state: present
-    src: templates/CustomResourceDefinition_migrations.kubevirt.io.yml.j2
-- name: Creating CustomResourceDefinition virtualmachinereplicasets.kubevirt.io
-  k8s_v1beta1_custom_resource_definition:
-    name: virtualmachinereplicasets.kubevirt.io
-    namespace: "{{ namespace}}"
-    state: present
-    src: templates/CustomResourceDefinition_virtualmachinereplicasets.kubevirt.io.yml.j2
-- name: Creating Deployment virt-controller
-  k8s_v1beta2_deployment:
-    name: virt-controller
-    namespace: "{{ namespace}}"
-    state: present
-    src: templates/Deployment_virt-controller.yml.j2
-- name: Creating DaemonSet virt-handler
-  k8s_v1beta2_daemon_set:
-    name: virt-handler
-    namespace: "{{ namespace}}"
-    state: present
-    src: templates/DaemonSet_virt-handler.yml.j2
-- name: Creating DaemonSet libvirt
-  k8s_v1beta2_daemon_set:
-    name: libvirt
-    namespace: "{{ namespace}}"
-    state: present
-    src: templates/DaemonSet_libvirt.yml.j2
+
+- name: Login As Super User
+  command: "oc login -u {{ admin_user }} -p {{ admin_password }}"
+
+- name: Add Privileged Policy
+  command: "oc adm policy add-scc-to-user privileged -z kubevirt-infra -n {{ namespace }}"
+
+- name: Add Hostmount-anyuid Policy
+  command: "oc adm policy add-scc-to-user hostmount-anyuid -z kubevirt-infra -n {{ namespace }}"
+
+- name: Download Kubevirt Template
+  get_url:
+    url: "https://github.com/kubevirt/kubevirt/releases/download/{{ tag }}/kubevirt.yaml"
+    dest: /tmp/kubevirt.yaml
+
+- name: Create Kubevirt Resources
+  command: oc create -f /tmp/kubevirt.yaml
+  ignore_errors : true

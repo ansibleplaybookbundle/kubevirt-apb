@@ -8,5 +8,5 @@
   - role: ansibleplaybookbundle.asb-modules
   - role: kubevirt-apb
   vars:
-    action: provision
+    action: deprovision
     cluster: kubernetes

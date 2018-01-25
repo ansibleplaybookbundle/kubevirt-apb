@@ -15,3 +15,11 @@ plans:
         title: Kubevirt Version
         type: string
         default: v0.2.0
+      - name: admin_user
+        title: Openshift admin_user
+        type: string
+        default: developer
+      - name: admin_password
+        title: Openshift admin_password
+        type: string
+        default: developer
