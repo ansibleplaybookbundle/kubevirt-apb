@@ -1,29 +1,26 @@
 # kubevirt-apb
-APB for managing KubeVirt deployments
+This *Ansible Playbook Bundle* deploys [Kubevirt](http://www.kubevirt.io)
+As the resources deployed need cluster-admin privileges, credentials of a super user are required for the APB to execute correctly
+
+# Parameters used 
+
+- tag Defaults to 0.2.0
+- admin_user
+- admin_password
+- release whether to download the templates used from kubevirt github releases or render them from local templates
+- openshift . whether to execute additional scc policy commands. Defaults to true
 
 ## How to use:
-* edit the broker-config configmap and make sure to point to the apb
 
-```
-- type: "dockerhub"
-  name: "kubevirt"
-  url: "https://registry.hub.docker.com"
-  org: "karmab"
-```
-
-* deploy this APB ( either from the UI or using command line, in this second case, you will need to put proper credentials in the yaml)
+* deploy from command line ( in this case, you will need to put proper credentials in the yaml)
 
 ```
 oc create -f launch.yml
 ```
 
-## Problems?
+* deploy from the UI
 
-Send me a mail at [karimboumedhel@gmail.com](mailto:karimboumedhel@gmail.com) !
-
-Mac Fly!!!
-
-karmab
+![Screenshot](images/kubevirt1.png)
 
 
-
+![Screenshot](images/kubevirt2.png)
