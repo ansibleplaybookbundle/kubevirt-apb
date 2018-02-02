@@ -1,56 +1,19 @@
 ---
-- name: Deleting DaemonSet libvirt
-  k8s_v1beta2_daemon_set:
-    name: libvirt
-    namespace: "{{ namespace}}"
-    state: absent
-- name: Deleting DaemonSet virt-handler
-  k8s_v1beta2_daemon_set:
-    name: virt-handler
-    namespace: "{{ namespace}}"
-    state: absent
-- name: Deleting Deployment virt-controller
-  k8s_v1beta2_deployment:
-    name: virt-controller
-    namespace: "{{ namespace}}"
-    state: absent
-- name: Deleting CustomResourceDefinition virtualmachinereplicasets.kubevirt.io
-  k8s_v1beta1_custom_resource_definition:
-    name: virtualmachinereplicasets.kubevirt.io
-    namespace: "{{ namespace}}"
-    state: absent
-- name: Deleting CustomResourceDefinition migrations.kubevirt.io
-  k8s_v1beta1_custom_resource_definition:
-    name: migrations.kubevirt.io
-    namespace: "{{ namespace}}"
-    state: absent
-- name: Deleting CustomResourceDefinition virtualmachines.kubevirt.io
-  k8s_v1beta1_custom_resource_definition:
-    name: virtualmachines.kubevirt.io
-    namespace: "{{ namespace}}"
-    state: absent
-- name: Deleting ClusterRoleBinding kubevirt-infra-cluster-admin
-  k8s_v1beta1_cluster_role_binding:
-    name: kubevirt-infra-cluster-admin
-    namespace: "{{ namespace}}"
-    state: absent
-- name: Deleting ClusterRoleBinding kubevirt-infra
-  k8s_v1beta1_cluster_role_binding:
-    name: kubevirt-infra
-    namespace: "{{ namespace}}"
-    state: absent
-- name: Deleting ServiceAccount kubevirt-admin
-  k8s_v1_service_account:
-    name: kubevirt-admin
-    namespace: "{{ namespace}}"
-    state: absent
-- name: Deleting ServiceAccount kubevirt-infra
-  k8s_v1_service_account:
-    name: kubevirt-infra
-    namespace: "{{ namespace}}"
-    state: absent
-- name: Deleting ClusterRole kubevirt-infra
-  k8s_v1beta1_cluster_role:
-    name: kubevirt-infra
-    namespace: "{{ namespace}}"
-    state: absent
+
+- name: Login As Super User
+  command: "oc login -u {{ admin_user }} -p {{ admin_password }}"
+
+- name: Delete Privileged Policy
+  command: "oc adm policy remove-scc-from-user privileged -z kubevirt-infra -n {{ namespace }}"
+
+- name: Delete Hostmount-anyuid Policy
+  command: "oc adm policy remove-scc-from-user hostmount-anyuid -z kubevirt-infra -n {{ namespace }}"
+
+- name: Download Kubevirt Template
+  get_url:
+    url: "https://github.com/kubevirt/kubevirt/releases/download/{{ tag }}/kubevirt.yaml"
+    dest: /tmp/kubevirt.yaml
+
+- name: Delete Kubevirt Resources
+  command: oc delete -f /tmp/kubevirt.yaml
+  ignore_errors : true

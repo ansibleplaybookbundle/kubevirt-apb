@@ -1,6 +1,12 @@
 FROM ansibleplaybookbundle/apb-base
 
 LABEL "com.redhat.apb.spec"=\
+"dmVyc2lvbjogMS4wCm5hbWU6IGt1YmV2aXJ0LWFwYgpkZXNjcmlwdGlvbjogQVBCIGZvciBtYW5h\
+Z2luZyBLdWJlVmlydCBkZXBsb3ltZW50cwpiaW5kYWJsZTogRmFsc2UKYXN5bmM6IG9wdGlvbmFs\
+Cm1ldGFkYXRhOgogIGRpc3BsYXlOYW1lOiBrdWJldmlydApwbGFuczoKICAtIG5hbWU6IGRlZmF1\
+bHQKICAgIGRlc2NyaXB0aW9uOiBEZWZhdWx0IGRlcGxveW1lbnQgcGxhbiBmb3Iga3ViZXZpcnQt\
+YXBiCiAgICBmcmVlOiBUcnVlCiAgICBtZXRhZGF0YToge30KICAgIHBhcmFtZXRlcnM6IFtdCg=="
+
 
 COPY playbooks /opt/apb/actions
 COPY roles /opt/ansible/roles

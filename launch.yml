@@ -1,0 +1,11 @@
+apiVersion: servicecatalog.k8s.io/v1beta1
+kind: ServiceInstance
+metadata:
+  name: kube1
+  namespace: kube-system
+spec:
+  clusterServiceClassExternalName: karmab-kubevirt-apb
+  clusterServicePlanExternalName: default
+  parameters:
+    admin_user: developer
+    admin_password: developer
