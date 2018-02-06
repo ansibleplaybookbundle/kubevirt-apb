@@ -2,7 +2,7 @@
 This *Ansible Playbook Bundle* deploys [Kubevirt](http://www.kubevirt.io)
 As the resources deployed need cluster-admin privileges, credentials of a super user are required for the APB to execute correctly
 
-# Parameters used 
+# Parameters used
 
 - tag Defaults to 0.2.0
 - admin_user
@@ -12,13 +12,17 @@ As the resources deployed need cluster-admin privileges, credentials of a super 
 
 ## How to use:
 
-* deploy from command line ( in this case, you will need to put proper credentials in the yaml)
+#### Deploy from the UI
+
+1) Edit ```templates/kubevirt-apb.yml``` and add a ```admin_user``` and
+   ```admin_password``` that have cluster-admin permission.
+2) Deploy from command line.
 
 ```
-oc create -f launch.yml
+kubectl create -f templates/kubevirt-apb.yml
 ```
 
-* deploy from the UI
+#### Deploy from the UI
 
 ![Screenshot](images/kubevirt1.png)
 
