@@ -1,19 +1,28 @@
 ---
-
 - name: Login As Super User
   command: "oc login -u {{ admin_user }} -p {{ admin_password }}"
-
-- name: Delete Privileged Policy
-  command: "oc adm policy remove-scc-from-user privileged -z kubevirt-infra -n {{ namespace }}"
-
-- name: Delete Hostmount-anyuid Policy
-  command: "oc adm policy remove-scc-from-user hostmount-anyuid -z kubevirt-infra -n {{ namespace }}"
+  when: cluster=="openshift"
 
 - name: Download Kubevirt Template
   get_url:
     url: "https://github.com/kubevirt/kubevirt/releases/download/{{ tag }}/kubevirt.yaml"
     dest: /tmp/kubevirt.yaml
+  when: release
+
+- name: Rendering Kubevirt Yaml
+  template:
+    src: kubevirt.yaml.j2
+    dest: /tmp/kubevirt.yaml
+  when: not release
 
 - name: Delete Kubevirt Resources
   command: oc delete -f /tmp/kubevirt.yaml
   ignore_errors : true
+
+- name: Delete Privileged Policy
+  command: "oc adm policy remove-scc-from-user privileged -z kubevirt-infra -n {{ namespace }}"
+  when: cluster=="openshift"
+
+- name: Delete Hostmount-anyuid Policy
+  command: "oc adm policy remove-scc-from-user hostmount-anyuid -z kubevirt-infra -n {{ namespace }}"
+  when: cluster=="openshift"
