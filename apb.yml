@@ -29,7 +29,3 @@ plans:
         title: Tag to use
         type: string
         default: v0.2.0
-      - name: openshift
-        title: Deploy On Openshift
-        type: boolean
-        default: True
