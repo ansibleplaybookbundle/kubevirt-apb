@@ -4,12 +4,12 @@
   when: cluster=="openshift"
 
 - name: Add Privileged Policy
-  command: "oc adm policy add-scc-to-user privileged -z kubevirt-infra -n {{ namespace }}"
+  command: "oc adm policy add-scc-to-user privileged -z {{ item }} -n {{ namespace }}"
   when: cluster=="openshift"
-
-- name: Add Hostmount-anyuid Policy
-  command: "oc adm policy add-scc-to-user hostmount-anyuid -z kubevirt-infra -n {{ namespace }}"
-  when: cluster=="openshift"
+  with_items:
+    - kubevirt-privileged
+    - kubevirt-controller
+    - kubevirt-infra
 
 - name: Download Kubevirt Template
   get_url:
