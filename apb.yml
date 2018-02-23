@@ -28,4 +28,4 @@ plans:
       - name: tag
         title: Tag to use
         type: string
-        default: v0.2.0
+        default: v0.3.0-alpha.3
