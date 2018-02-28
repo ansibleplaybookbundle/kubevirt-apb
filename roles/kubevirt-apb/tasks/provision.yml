@@ -9,7 +9,6 @@
   with_items:
     - kubevirt-privileged
     - kubevirt-controller
-    - kubevirt-infra
 
 - name: Download Kubevirt Template
   get_url:
