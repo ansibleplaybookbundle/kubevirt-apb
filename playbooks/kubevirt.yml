@@ -1,4 +1,4 @@
-- name: kubevirt-apb playbook to provision the application
+- name: kubevirt-apb playbook to {{ action }} the application
   hosts: localhost
   gather_facts: false
   connection: local
@@ -8,5 +8,4 @@
   - role: ansibleplaybookbundle.asb-modules
   - role: kubevirt-apb
   vars:
-    action: provision
     cluster: kubernetes

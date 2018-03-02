@@ -1,5 +1,5 @@
 version: 1.0
-name: kubevirt-apb
+name: kubevirt
 description: APB for managing KubeVirt deployments
 bindable: False
 async: optional
