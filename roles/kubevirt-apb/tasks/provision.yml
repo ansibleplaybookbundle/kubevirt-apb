@@ -24,9 +24,9 @@
   when: nested_virt==True
 
 - name: Check Nested Virt is Enabled
-  debug:
-    var: result
-  when: nested_virt==True
+  fail:
+    msg: "Enabling nested virt failed. /sys/module/kvm_intel/parameters/nested = {{ result.stdout }}"
+  when: nested_virt==True and result.stdout=="N"
 
 - name: Download Kubevirt Template
   get_url:
