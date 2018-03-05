@@ -10,6 +10,24 @@
     - kubevirt-privileged
     - kubevirt-controller
 
+- name: Enable Nested Virt
+  shell: echo "options kvm-intel nested=1" > /etc/modprobe.d/kvm-intel.conf
+  when: nested_virt==True
+
+- name: Enable Nested Virt
+  shell: rmmod kvm-intel && modprobe kvm-intel || true
+  when: nested_virt==True
+
+- name: Check Nested Virt is Enabled
+  shell: cat /sys/module/kvm_intel/parameters/nested
+  register: result
+  when: nested_virt==True
+
+- name: Check Nested Virt is Enabled
+  fail:
+    msg: "Enabling nested virt failed. /sys/module/kvm_intel/parameters/nested = {{ result.stdout }}"
+  when: nested_virt==True and result.stdout=="N"
+
 - name: Download Kubevirt Template
   get_url:
     url: "https://github.com/kubevirt/kubevirt/releases/download/{{ tag }}/kubevirt.yaml"

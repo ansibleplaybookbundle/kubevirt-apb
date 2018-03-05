@@ -29,3 +29,7 @@ plans:
         title: Tag to use
         type: string
         default: sprint5
+      - name: nested_virt
+        title: Enable Nested Virt
+        type: boolean
+        default: False
