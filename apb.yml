@@ -21,11 +21,7 @@ plans:
         type: string
         required: true
         display_type: password
-      - name: release
-        title: Use Release files
-        type: boolean
-        default: True
       - name: tag
         title: Tag to use
         type: string
-        default: sprint5
+        default: 0.3.0
