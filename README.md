@@ -5,7 +5,7 @@ As the resources deployed need cluster-admin privileges, credentials of a super 
 
 # Parameters used
 
-- *tag*  Tag to use for kubevirt related images (defaults to 0.3.0)
+- *tag*  Tag to use for kubevirt related images (defaults to v0.3.0)
 - *admin_user*
 - *admin_password*
 
