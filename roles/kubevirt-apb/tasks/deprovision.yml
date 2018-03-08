@@ -7,13 +7,6 @@
   get_url:
     url: "https://github.com/kubevirt/kubevirt/releases/download/{{ tag }}/kubevirt.yaml"
     dest: /tmp/kubevirt.yaml
-  when: release
-
-- name: Rendering Kubevirt Yaml
-  template:
-    src: kubevirt.yaml.j2
-    dest: /tmp/kubevirt.yaml
-  when: not release
 
 - name: Delete Kubevirt Resources
   command: oc delete -f /tmp/kubevirt.yaml

@@ -5,10 +5,9 @@ As the resources deployed need cluster-admin privileges, credentials of a super 
 
 # Parameters used
 
-- *tag*  Tag to use for kubevirt related images (defaults to 0.2.0)
+- *tag*  Tag to use for kubevirt related images (defaults to 0.3.0)
 - *admin_user*
 - *admin_password*
-- *release* Whether to download the templates used from kubevirt github releases or render them from local templates
 
 ## How to use:
 
