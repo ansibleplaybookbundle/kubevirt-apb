@@ -14,7 +14,6 @@ As the resources deployed need cluster-admin privileges, credentials of a super 
 #### Deploy from the UI
 
 1) Edit ```templates/kubevirt-apb.yml``` and set ```admin_user``` and ```admin_password``` credentials that have cluster-admin permission.
-   
 2) Deploy from command line:
 
 ```
