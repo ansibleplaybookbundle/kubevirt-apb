@@ -1,4 +1,4 @@
-FROM ansibleplaybookbundle/apb-base
+FROM ansibleplaybookbundle/apb-base:galaxy
 
 LABEL "com.redhat.apb.spec"=\
 "dmVyc2lvbjogMS4wCm5hbWU6IGt1YmV2aXJ0LWFwYgpkZXNjcmlwdGlvbjogQVBCIGZvciBtYW5h\
@@ -15,7 +15,6 @@ X3R5cGU6IHBhc3N3b3JkCiAgICAgIC0gbmFtZTogdGFnCiAgICAgICAgdGl0bGU6IFRhZyB0byB1\
 c2UKICAgICAgICB0eXBlOiBzdHJpbmcKICAgICAgICBkZWZhdWx0OiB2MC4zLjAK"
 
 
-COPY playbooks /opt/apb/actions
-COPY roles /opt/ansible/roles
-RUN chmod -R g=u /opt/{ansible,apb}
+ENV APB_ACTION_PATH="kubevirt-ansible/playbooks/kubevirt.yml"
+COPY requirements.yml /opt/ansible/requirements.yml
 USER apb

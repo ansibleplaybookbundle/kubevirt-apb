@@ -1,0 +1,3 @@
+---
+- src: https://github.com/rthallisey/kubevirt-ansible
+  version: galaxy-all
