@@ -30,7 +30,7 @@ plans:
   - name: storage-demo
     description: Deployment plan with ephemeral storage
     metadata:
-      displayName: KubeVirt with CNS Storage
+      displayName: KubeVirt with ephemeral Storage
       longDescription: This plan provides kubevirt with ephemeral storage
     free: True
     parameters:
