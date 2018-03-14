@@ -27,6 +27,31 @@ plans:
         title: Tag to use
         type: string
         default: v0.3.0
+  - name: cns
+    description: Deployment plan with CNS
+    metadata:
+      displayName: KubeVirt with CNS Storage
+      longDescription: This plan provides kubevirt with CNS storage
+    free: True
+    parameters:
+      - title: Openshift Admin User
+        name: admin_user
+        type: string
+        required: true
+      - title: Openshift Admin Password
+        name: admin_password
+        type: string
+        required: true
+        display_type: password
+      - name: tag
+        title: Tag to use
+        type: string
+        default: v0.3.0
+      - name: storage_role
+        title: Backend Storage
+        default: cns
+        enum: ['cns']
+        type: enum
   - name: storage-demo
     description: Deployment plan with ephemeral storage
     metadata:
@@ -52,32 +77,7 @@ plans:
         default: storage-demo
         enum: ['storage-demo']
         type: enum
-  - name: CNS
-    description: Deployment plan with CNS
-    metadata:
-      displayName: KubeVirt with CNS Storage
-      longDescription: This plan provides kubevirt with CNS storage
-    free: True
-    parameters:
-      - title: Openshift Admin User
-        name: admin_user
-        type: string
-        required: true
-      - title: Openshift Admin Password
-        name: admin_password
-        type: string
-        required: true
-        display_type: password
-      - name: tag
-        title: Tag to use
-        type: string
-        default: v0.3.0
-      - name: storage_role
-        title: Backend Storage
-        default: cns
-        enum: ['cns']
-        type: enum
-  - name: Cinder
+  - name: cinder
     description: Deployment plan for kubevirt-apb with Cinder backend
     metadata:
       displayName: KubeVirt with Cinder backend
