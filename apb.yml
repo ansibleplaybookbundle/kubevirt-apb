@@ -74,8 +74,8 @@ plans:
         default: v0.3.0
       - name: storage_role
         title: Backend Storage
-        default: CNS
-        enum: ['CNS']
+        default: cns
+        enum: ['cns']
         type: enum
   - name: Cinder
     description: Deployment plan for kubevirt-apb with Cinder backend
