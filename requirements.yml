@@ -1,0 +1,8 @@
+---
+# TODO: Use https://github.com/kubevirt/kubevirt-ansible when these
+# pull requests merge:
+#   https://github.com/kubevirt/kubevirt-ansible/pull/138
+#   https://github.com/kubevirt/kubevirt-ansible/pull/137
+#
+- src: https://github.com/rthallisey/kubevirt-ansible
+  version: galaxy-all
