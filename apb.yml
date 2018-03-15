@@ -27,6 +27,11 @@ plans:
         title: Tag to use
         type: string
         default: v0.3.0
+      - name: storage_role
+        title: Backend Storage
+        default: storage-none
+        enum: ['storage-none']
+        type: enum
   - name: cns
     description: Deployment plan with CNS
     metadata:
