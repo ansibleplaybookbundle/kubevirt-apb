@@ -49,8 +49,8 @@ plans:
         default: v0.3.0
       - name: storage_role
         title: Backend Storage
-        default: cns
-        enum: ['cns']
+        default: storage-cns
+        enum: ['storage-cns']
         type: enum
   - name: storage-demo
     description: Deployment plan with ephemeral storage
