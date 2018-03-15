@@ -8,30 +8,10 @@ metadata:
   imageUrl: https://cdn.pbrd.co/images/H5Gutd7.png
 plans:
   - name: default
-    description: Default deployment plan for kubevirt-apb with no storage
+    description: Default deployment plan for kubevirt-apb
     metadata:
       displayName: Default
-      longDescription: This plan provides kubevirt with no storage
-    free: True
-    parameters:
-      - title: Openshift Admin User
-        name: admin_user
-        type: string
-        required: true
-      - title: Openshift Admin Password
-        name: admin_password
-        type: string
-        required: true
-        display_type: password
-      - name: tag
-        title: Tag to use
-        type: string
-        default: v0.3.0
-  - name: cns
-    description: Deployment plan with CNS
-    metadata:
-      displayName: KubeVirt with CNS Storage
-      longDescription: This plan provides kubevirt with CNS storage
+      longDescription: This plan provides kubevirt
     free: True
     parameters:
       - title: Openshift Admin User
@@ -49,56 +29,6 @@ plans:
         default: v0.3.0
       - name: storage_role
         title: Backend Storage
-        default: storage-cns
-        enum: ['storage-cns']
-        type: enum
-  - name: storage-demo
-    description: Deployment plan with ephemeral storage
-    metadata:
-      displayName: KubeVirt with ephemeral Storage
-      longDescription: This plan provides kubevirt with ephemeral storage
-    free: True
-    parameters:
-      - title: Openshift Admin User
-        name: admin_user
-        type: string
-        required: true
-      - title: Openshift Admin Password
-        name: admin_password
-        type: string
-        required: true
-        display_type: password
-      - name: tag
-        title: Tag to use
-        type: string
-        default: v0.3.0
-      - name: storage_role
-        title: Backend Storage
-        default: storage-demo
-        enum: ['storage-demo']
-        type: enum
-  - name: cinder
-    description: Deployment plan for kubevirt-apb with Cinder backend
-    metadata:
-      displayName: KubeVirt with Cinder backend
-      longDescription: This plan provides kubevirt with Cinder backend
-    free: True
-    parameters:
-      - title: Openshift Admin User
-        name: admin_user
-        type: string
-        required: true
-      - title: Openshift Admin Password
-        name: admin_password
-        type: string
-        required: true
-        display_type: password
-      - name: tag
-        title: Tag to use
-        type: string
-        default: v0.3.0
-      - name: storage_role
-        title: Backend Storage
-        default: cinder
-        enum: ['cinder']
+        default: None
+        enum: ['None', 'storage-cinder', 'storage-demo', 'storage-cns']
         type: enum
