@@ -26,7 +26,7 @@ plans:
       - name: tag
         title: Tag to use
         type: string
-        default: v0.3.0
+        default: v0.4.0-alpha.1
       - name: storage_role
         title: Backend Storage
         default: storage-none
@@ -51,7 +51,7 @@ plans:
       - name: tag
         title: Tag to use
         type: string
-        default: v0.3.0
+        default: v0.4.0-alpha.1
       - name: storage_role
         title: Backend Storage
         default: storage-cns
@@ -76,7 +76,7 @@ plans:
       - name: tag
         title: Tag to use
         type: string
-        default: v0.3.0
+        default: v0.4.0-alpha.1
       - name: storage_role
         title: Backend Storage
         default: storage-demo
@@ -101,7 +101,7 @@ plans:
       - name: tag
         title: Tag to use
         type: string
-        default: v0.3.0
+        default: v0.4.0-alpha.1
       - name: storage_role
         title: Backend Storage
         default: cinder
