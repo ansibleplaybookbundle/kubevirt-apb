@@ -14,19 +14,20 @@ plans:
       longDescription: This plan provides kubevirt with no storage
     free: True
     parameters:
-      - title: Openshift Admin User
+      - title: OpenShift Admin User
         name: admin_user
         type: string
         required: true
-      - title: Openshift Admin Password
+      - title: OpenShift Admin Password
         name: admin_password
         type: string
         required: true
         display_type: password
-      - name: tag
-        title: Tag to use
-        type: string
-        default: v0.4.0-alpha.1
+      - name: version
+        title: Version
+        default: v0.4.0-alpha.2
+        enum: ['v0.4.0-alpha.2', 'v0.4.0-alpha.1', 'v0.4.0-alpha.0', 'v0.3.0', 'v0.2.0', 'v0.1.0']
+        type: enum
       - name: storage_role
         title: Backend Storage
         default: storage-none
@@ -39,19 +40,20 @@ plans:
       longDescription: This plan provides kubevirt with CNS storage
     free: True
     parameters:
-      - title: Openshift Admin User
+      - title: OpenShift Admin User
         name: admin_user
         type: string
         required: true
-      - title: Openshift Admin Password
+      - title: OpenShift Admin Password
         name: admin_password
         type: string
         required: true
         display_type: password
-      - name: tag
-        title: Tag to use
-        type: string
-        default: v0.4.0-alpha.1
+      - name: version
+        title: Version
+        default: v0.4.0-alpha.2
+        enum: ['v0.4.0-alpha.2', 'v0.4.0-alpha.1', 'v0.4.0-alpha.0', 'v0.3.0', 'v0.2.0', 'v0.1.0']
+        type: enum
       - name: storage_role
         title: Backend Storage
         default: storage-cns
@@ -64,19 +66,20 @@ plans:
       longDescription: This plan provides kubevirt with ephemeral storage
     free: True
     parameters:
-      - title: Openshift Admin User
+      - title: OpenShift Admin User
         name: admin_user
         type: string
         required: true
-      - title: Openshift Admin Password
+      - title: OpenShift Admin Password
         name: admin_password
         type: string
         required: true
         display_type: password
-      - name: tag
-        title: Tag to use
-        type: string
-        default: v0.4.0-alpha.1
+      - name: version
+        title: Version
+        default: v0.4.0-alpha.2
+        enum: ['v0.4.0-alpha.2', 'v0.4.0-alpha.1', 'v0.4.0-alpha.0', 'v0.3.0', 'v0.2.0', 'v0.1.0']
+        type: enum
       - name: storage_role
         title: Backend Storage
         default: storage-demo
@@ -89,19 +92,20 @@ plans:
       longDescription: This plan provides kubevirt with Cinder backend
     free: True
     parameters:
-      - title: Openshift Admin User
+      - title: OpenShift Admin User
         name: admin_user
         type: string
         required: true
-      - title: Openshift Admin Password
+      - title: OpenShift Admin Password
         name: admin_password
         type: string
         required: true
         display_type: password
-      - name: tag
-        title: Tag to use
-        type: string
-        default: v0.4.0-alpha.1
+      - name: version
+        title: Version
+        default: v0.4.0-alpha.2
+        enum: ['v0.4.0-alpha.2', 'v0.4.0-alpha.1', 'v0.4.0-alpha.0', 'v0.3.0', 'v0.2.0', 'v0.1.0']
+        type: enum
       - name: storage_role
         title: Backend Storage
         default: cinder
