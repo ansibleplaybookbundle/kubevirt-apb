@@ -41,11 +41,11 @@ plans:
         default: storage-none
         enum: ['storage-none']
         type: enum
-  - name: cns
-    description: Deployment plan with CNS
+  - name: gluster
+    description: Deployment plan with Gluster storage
     metadata:
-      displayName: KubeVirt with CNS Storage
-      longDescription: This plan provides kubevirt with CNS storage
+      displayName: KubeVirt with Gluster Storage
+      longDescription: This plan provides kubevirt with Gluster storage
     free: True
     parameters:
       - title: OpenShift Admin User
@@ -64,8 +64,8 @@ plans:
         type: enum
       - name: storage_role
         title: Backend Storage
-        default: storage-cns
-        enum: ['storage-cns']
+        default: storage-glusterfs
+        enum: ['storage-glusterfs']
         type: enum
   - name: storage-demo
     description: Deployment plan with ephemeral storage
