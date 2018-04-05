@@ -1,11 +1,19 @@
 version: 1.0
-name: kubevirt-apb
+name: virtualization
 description: KubeVirt installer
 bindable: False
 async: optional
 metadata:
-  displayName: Kubevirt
+  displayName: Virtualization
+  longDescription: |
+     KubeVirt enables the migration of existing virtualized workloads directly into the development workflows supported by Kubernetes.
+
+     This provides a path to more rapid application modernization by:
+         - Supporting development of new microservice applications in containers that interact with existing virtualized applications.
+         - Combining existing virtualized workloads with new container workloads on the same platform, thereby making it easier to decompose monolithic virtualized workloads into containers over time.
+  documentationUrl: https://github.com/kubevirt/kubevirt/blob/master/README.md
   imageUrl: https://cdn.pbrd.co/images/H5Gutd7.png
+  providerDisplayName: "Red Hat, Inc."
 plans:
   - name: default
     description: Default deployment plan for kubevirt-apb with no storage
@@ -14,19 +22,20 @@ plans:
       longDescription: This plan provides kubevirt with no storage
     free: True
     parameters:
-      - title: Openshift Admin User
+      - title: OpenShift Admin User
         name: admin_user
         type: string
         required: true
-      - title: Openshift Admin Password
+      - title: OpenShift Admin Password
         name: admin_password
         type: string
         required: true
         display_type: password
-      - name: tag
-        title: Tag to use
-        type: string
-        default: v0.4.0-alpha.1
+      - name: version
+        title: Version
+        default: v0.4.0-alpha.2
+        enum: ['v0.4.0-alpha.2', 'v0.4.0-alpha.1', 'v0.4.0-alpha.0', 'v0.3.0', 'v0.2.0', 'v0.1.0']
+        type: enum
       - name: storage_role
         title: Backend Storage
         default: storage-none
@@ -39,19 +48,20 @@ plans:
       longDescription: This plan provides kubevirt with CNS storage
     free: True
     parameters:
-      - title: Openshift Admin User
+      - title: OpenShift Admin User
         name: admin_user
         type: string
         required: true
-      - title: Openshift Admin Password
+      - title: OpenShift Admin Password
         name: admin_password
         type: string
         required: true
         display_type: password
-      - name: tag
-        title: Tag to use
-        type: string
-        default: v0.4.0-alpha.1
+      - name: version
+        title: Version
+        default: v0.4.0-alpha.2
+        enum: ['v0.4.0-alpha.2', 'v0.4.0-alpha.1', 'v0.4.0-alpha.0', 'v0.3.0', 'v0.2.0', 'v0.1.0']
+        type: enum
       - name: storage_role
         title: Backend Storage
         default: storage-cns
@@ -64,19 +74,20 @@ plans:
       longDescription: This plan provides kubevirt with ephemeral storage
     free: True
     parameters:
-      - title: Openshift Admin User
+      - title: OpenShift Admin User
         name: admin_user
         type: string
         required: true
-      - title: Openshift Admin Password
+      - title: OpenShift Admin Password
         name: admin_password
         type: string
         required: true
         display_type: password
-      - name: tag
-        title: Tag to use
-        type: string
-        default: v0.4.0-alpha.1
+      - name: version
+        title: Version
+        default: v0.4.0-alpha.2
+        enum: ['v0.4.0-alpha.2', 'v0.4.0-alpha.1', 'v0.4.0-alpha.0', 'v0.3.0', 'v0.2.0', 'v0.1.0']
+        type: enum
       - name: storage_role
         title: Backend Storage
         default: storage-demo
@@ -89,19 +100,20 @@ plans:
       longDescription: This plan provides kubevirt with Cinder backend
     free: True
     parameters:
-      - title: Openshift Admin User
+      - title: OpenShift Admin User
         name: admin_user
         type: string
         required: true
-      - title: Openshift Admin Password
+      - title: OpenShift Admin Password
         name: admin_password
         type: string
         required: true
         display_type: password
-      - name: tag
-        title: Tag to use
-        type: string
-        default: v0.4.0-alpha.1
+      - name: version
+        title: Version
+        default: v0.4.0-alpha.2
+        enum: ['v0.4.0-alpha.2', 'v0.4.0-alpha.1', 'v0.4.0-alpha.0', 'v0.3.0', 'v0.2.0', 'v0.1.0']
+        type: enum
       - name: storage_role
         title: Backend Storage
         default: cinder
