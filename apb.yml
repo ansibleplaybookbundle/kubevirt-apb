@@ -1,10 +1,10 @@
 version: 1.0
 name: kubevirt-apb
-description: APB for managing KubeVirt deployments
+description: KubeVirt installer
 bindable: False
 async: optional
 metadata:
-  displayName: kubevirt (APB)
+  displayName: Kubevirt
   imageUrl: https://cdn.pbrd.co/images/H5Gutd7.png
 plans:
   - name: default
