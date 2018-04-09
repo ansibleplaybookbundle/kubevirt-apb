@@ -35,8 +35,8 @@ plans:
         display_type: password
       - name: version
         title: Version
-        default: v0.4.0
-        enum: ['v0.4.0', 'v0.4.0-alpha.2', 'v0.3.0', 'v0.2.0', 'v0.1.0']
+        default: 0.4.1-alpha.1
+        enum: ['0.4.1-alpha.1', '0.4.0', '0.3.0', '0.2.0', '0.1.0']
         type: enum
       - name: storage_role
         title: Backend Storage
@@ -61,8 +61,8 @@ plans:
         display_type: password
       - name: version
         title: Version
-        default: v0.4.0
-        enum: ['v0.4.0', 'v0.4.0-alpha.2', 'v0.3.0', 'v0.2.0', 'v0.1.0']
+        default: 0.4.1-alpha.1
+        enum: ['0.4.1-alpha.1', '0.4.0', '0.3.0', '0.2.0', '0.1.0']
         type: enum
       - name: storage_role
         title: Backend Storage
@@ -87,8 +87,8 @@ plans:
         display_type: password
       - name: version
         title: Version
-        default: v0.4.0
-        enum: ['v0.4.0', 'v0.4.0-alpha.2', 'v0.3.0', 'v0.2.0', 'v0.1.0']
+        default: 0.4.1-alpha.1
+        enum: ['0.4.1-alpha.1', '0.4.0', '0.3.0', '0.2.0', '0.1.0']
         type: enum
       - name: storage_role
         title: Backend Storage
@@ -113,8 +113,8 @@ plans:
         display_type: password
       - name: version
         title: Version
-        default: v0.4.0
-        enum: ['v0.4.0', 'v0.4.0-alpha.2', 'v0.3.0', 'v0.2.0', 'v0.1.0']
+        default: 0.4.1-alpha.1
+        enum: ['0.4.1-alpha.1', '0.4.0', '0.3.0', '0.2.0', '0.1.0']
         type: enum
       - name: storage_role
         title: Backend Storage
