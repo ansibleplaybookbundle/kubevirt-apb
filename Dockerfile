@@ -77,6 +77,7 @@ ZGVyCiAgICAgICAgZW51bTogWydjaW5kZXInXQogICAgICAgIHR5cGU6IGVudW0K"
 
 ENV APB_ACTION_PATH="kubevirt-ansible/playbooks/kubevirt.yml"
 COPY requirements.yml /opt/ansible/requirements.yml
+COPY inventory /etc/ansible/hosts
 
 RUN ansible-galaxy install -r /opt/ansible/requirements.yml
 RUN chmod -R g=u /opt/{ansible,apb} /etc/ansible/roles
