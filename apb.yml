@@ -3,8 +3,6 @@ name: virtualization
 description: KubeVirt installer
 bindable: False
 async: optional
-tags:
-  - virtualmachine
 metadata:
   displayName: Kubevirt
   longDescription: |
