@@ -1,0 +1,2 @@
+[masters]
+localhost ansible_connection=local
