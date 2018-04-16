@@ -68,28 +68,30 @@ plans:
         enum: ['storage-glusterfs']
         type: enum
       - title: GlusterFS Namespace
-        name: namespace
+        name: glusterfs_namespace
         description:
           "The namespace containing the GlusterFS and Heketi resources."
         type: string
         display_group: GlusterFS Settings
-      - title: Heketi URL (ignored if Heketi Route is specified)
+        default: "app-storage"
+      - title: GlusterFS Name
+        name: glusterfs_name
+        description:
+          "The name of the GlusterFS installation."
+        type: string
+        display_group: GlusterFS Settings
+        default: "storage"
+      - title: Heketi URL
         name: heketi_url
         description:
-          "URL to reach the Heketi service. This is ignored if Heketi Route is
+          "(Optional) URL to reach the Heketi service. This is ignored if Heketi Route is
           specified."
         type: string
         display_group: GlusterFS Settings
-      - title: Heketi Route
-        name: heketi_route_name
+      - title: Heketi Admin Key
+        name: heketi_admin_key
         description:
-          "(OpenShift only) Name of a Route to reach the Heketi service."
-        type: string
-        display_group: GlusterFS Settings
-      - title: Heketi Secret
-        name: heketi_secret_name
-        description:
-          "Name of a Secret containing the Heketi admin key."
+          "(Optional) The URL to the Heketi service. Auto-detected if unspecified."
         type: string
         display_group: GlusterFS Settings
       - title: Use external provisioner?
