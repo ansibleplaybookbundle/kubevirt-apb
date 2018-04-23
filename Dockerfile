@@ -97,6 +97,8 @@ Y2tlbmQgU3RvcmFnZQogICAgICAgIGRlZmF1bHQ6IGNpbmRlcgogICAgICAgIGVudW06IFsnY2lu\
 ZGVyJ10KICAgICAgICB0eXBlOiBlbnVtCg=="
 
 
+RUN yum install -y iptables \
+    && yum clean all
 
 ENV APB_ACTION_PATH="kubevirt-ansible/playbooks/kubevirt.yml"
 COPY requirements.yml /opt/ansible/requirements.yml
