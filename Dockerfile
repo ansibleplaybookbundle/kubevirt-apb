@@ -1,4 +1,4 @@
-FROM ansibleplaybookbundle/apb-base:galaxy
+FROM ansibleplaybookbundle/apb-base:latest
 
 LABEL "com.redhat.apb.spec"=\
 "dmVyc2lvbjogMS4wCm5hbWU6IHZpcnR1YWxpemF0aW9uCmRlc2NyaXB0aW9uOiBLdWJlVmlydCBp\
@@ -100,9 +100,9 @@ ZGVyJ10KICAgICAgICB0eXBlOiBlbnVtCg=="
 RUN yum install -y iptables \
     && yum clean all
 
-ENV APB_ACTION_PATH="kubevirt-ansible/playbooks/kubevirt.yml"
 COPY requirements.yml /opt/ansible/requirements.yml
 COPY inventory /etc/ansible/hosts
+COPY playbooks/* /opt/apb/actions/
 
 RUN ansible-galaxy install -r /opt/ansible/requirements.yml
 RUN chmod -R g=u /opt/{ansible,apb} /etc/ansible/roles
