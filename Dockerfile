@@ -97,14 +97,21 @@ Y2tlbmQgU3RvcmFnZQogICAgICAgIGRlZmF1bHQ6IGNpbmRlcgogICAgICAgIGVudW06IFsnY2lu\
 ZGVyJ10KICAgICAgICB0eXBlOiBlbnVtCg=="
 
 
-RUN yum install -y iptables \
+RUN yum install -y iptables wget \
     && yum clean all
 
+### UPSTREAM ONLY ###
 COPY requirements.yml /opt/ansible/requirements.yml
-COPY inventory /etc/ansible/hosts
-COPY playbooks/* /opt/apb/actions/
+COPY download-templates.sh /usr/bin/download-templates
+RUN mkdir /opt/apb/kubevirt-templates \
+    && download-templates /opt/apb/kubevirt-templates
 
-RUN ansible-galaxy install -r /opt/ansible/requirements.yml
+RUN ansible-galaxy install -r /opt/ansible/requirements.yml \
+    && cp -r ./kubevirt-templates /etc/ansible/roles/kubevirt-ansible/roles/kubevirt/templates/
+### UPSTREAM ONLY ###
+
+COPY playbooks/* /opt/apb/actions/
+COPY inventory /etc/ansible/hosts
 RUN chmod -R g=u /opt/{ansible,apb} /etc/ansible/roles
 
 USER apb
