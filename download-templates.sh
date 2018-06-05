@@ -20,5 +20,6 @@ for item in ${version}; do
     curl -f -o "${KUBEVIRT_TEMPLATE_DIR}/${item}/vm-template-fedora.yaml" "${vm_template_url}/${item}/cluster/vm-template-fedora.yaml"
     curl -f -o "${KUBEVIRT_TEMPLATE_DIR}/${item}/vm-template-rhel7.yaml" "${vm_template_url}/${item}/cluster/vm-template-rhel7.yaml"
     curl -f -o "${KUBEVIRT_TEMPLATE_DIR}/${item}/vm-template-windows2012r2.yaml" "${vm_template_url}/${item}/cluster/vm-template-windows2012r2.yaml"
+    curl -f -o "${KUBEVIRT_TEMPLATE_DIR}/${item}/demo-content.yaml" "${manifest_url}/${item}/demo-content.yaml"
     wget -O "${KUBEVIRT_TEMPLATE_DIR}/${item}/kubevirt.yaml" "${manifest_url}/${item}/kubevirt.yaml"
 done
