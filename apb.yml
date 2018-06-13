@@ -16,10 +16,10 @@ metadata:
   providerDisplayName: "Red Hat, Inc."
 plans:
   - name: default
-    description: Default deployment plan for kubevirt-apb with no storage
+    description: Default deployment plan for kubevirt-apb using existing
     metadata:
       displayName: Default
-      longDescription: This plan provides kubevirt with no storage
+      longDescription: This plan deploys kubevirt
     free: True
     parameters:
       - title: OpenShift Admin User
@@ -35,121 +35,4 @@ plans:
         title: Version
         default: 0.6.0
         enum: ['0.6.0', '0.5.0', '0.4.0', '0.3.0', '0.2.0', '0.1.0']
-        type: enum
-      - name: storage_role
-        title: Backend Storage
-        default: storage-none
-        enum: ['storage-none']
-        type: enum
-  - name: gluster
-    description: Deployment plan with Gluster storage
-    metadata:
-      displayName: KubeVirt with Gluster Storage
-      longDescription: This plan provides kubevirt with Gluster storage
-    free: True
-    parameters:
-      - title: OpenShift Admin User
-        name: admin_user
-        type: string
-        required: true
-      - title: OpenShift Admin Password
-        name: admin_password
-        type: string
-        required: true
-        display_type: password
-      - name: version
-        title: Version
-        default: 0.6.0
-        enum: ['0.6.0', '0.5.0', '0.4.0', '0.3.0', '0.2.0', '0.1.0']
-        type: enum
-      - name: storage_role
-        title: Backend Storage
-        default: storage-glusterfs
-        enum: ['storage-glusterfs']
-        type: enum
-      - title: GlusterFS Namespace
-        name: glusterfs_namespace
-        description:
-          "The namespace containing the GlusterFS and Heketi resources."
-        type: string
-        display_group: GlusterFS Settings
-        default: "app-storage"
-      - title: GlusterFS Name
-        name: glusterfs_name
-        description:
-          "The name of the GlusterFS installation."
-        type: string
-        display_group: GlusterFS Settings
-        default: "storage"
-      - title: Heketi URL
-        name: heketi_url
-        description:
-          "(Optional) URL to reach the Heketi service. This is ignored if Heketi Route is
-          specified."
-        type: string
-        display_group: GlusterFS Settings
-      - title: Heketi Admin Key
-        name: heketi_admin_key
-        description:
-          "(Optional) The URL to the Heketi service. Auto-detected if unspecified."
-        type: string
-        display_group: GlusterFS Settings
-      - title: Use external provisioner?
-        name: external_provisioner
-        description:
-          "Whether to use the external GlusterFS provisioner. Enables
-          additional features."
-        type: boolean
-        display_group: GlusterFS Settings
-  - name: storage-demo
-    description: Deployment plan with ephemeral storage
-    metadata:
-      displayName: KubeVirt with ephemeral Storage
-      longDescription: This plan provides kubevirt with ephemeral storage
-    free: True
-    parameters:
-      - title: OpenShift Admin User
-        name: admin_user
-        type: string
-        required: true
-      - title: OpenShift Admin Password
-        name: admin_password
-        type: string
-        required: true
-        display_type: password
-      - name: version
-        title: Version
-        default: 0.6.0
-        enum: ['0.6.0', '0.5.0', '0.4.0', '0.3.0', '0.2.0', '0.1.0']
-        type: enum
-      - name: storage_role
-        title: Backend Storage
-        default: storage-demo
-        enum: ['storage-demo']
-        type: enum
-  - name: cinder
-    description: Deployment plan for kubevirt-apb with Cinder backend
-    metadata:
-      displayName: KubeVirt with Cinder backend
-      longDescription: This plan provides kubevirt with Cinder backend
-    free: True
-    parameters:
-      - title: OpenShift Admin User
-        name: admin_user
-        type: string
-        required: true
-      - title: OpenShift Admin Password
-        name: admin_password
-        type: string
-        required: true
-        display_type: password
-      - name: version
-        title: Version
-        default: 0.6.0
-        enum: ['0.6.0', '0.5.0', '0.4.0', '0.3.0', '0.2.0', '0.1.0']
-        type: enum
-      - name: storage_role
-        title: Backend Storage
-        default: cinder
-        enum: ['cinder']
         type: enum
