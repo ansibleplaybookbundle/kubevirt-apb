@@ -35,6 +35,7 @@ plans:
         title: Version
         default: 0.6.0
         enum: ['0.6.0', '0.5.0', '0.4.0', '0.3.0', '0.2.0', '0.1.0']
+        type: enum
       - title: Registry URL
         name: registry_url
         type: string
