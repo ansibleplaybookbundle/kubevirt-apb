@@ -9,7 +9,7 @@ build_and_push: apb_build docker_push apb_push
 .PHONY: apb_build
 apb_build:
 	docker run --rm --privileged -v $(PWD):/mnt:z -v $(HOME)/.kube:/.kube -v /var/run/docker.sock:/var/run/docker.sock -u $(USER) docker.io/ansibleplaybookbundle/apb-tools:latest prepare
-	docker build -t $(DOCKERHOST)/$(DOCKERORG)/$(IMAGENAME):$(TAG) .
+	docker build -t $(DOCKERHOST)/$(DOCKERORG)/$(IMAGENAME):$(TAG) $(ARGS) .
 
 .PHONY: docker_push
 docker_push:
