@@ -25,16 +25,16 @@ cgogICAgICAgIG5hbWU6IGFkbWluX3VzZXIKICAgICAgICB0eXBlOiBzdHJpbmcKICAgICAgICBy\
 ZXF1aXJlZDogdHJ1ZQogICAgICAtIHRpdGxlOiBPcGVuU2hpZnQgQWRtaW4gUGFzc3dvcmQKICAg\
 ICAgICBuYW1lOiBhZG1pbl9wYXNzd29yZAogICAgICAgIHR5cGU6IHN0cmluZwogICAgICAgIHJl\
 cXVpcmVkOiB0cnVlCiAgICAgICAgZGlzcGxheV90eXBlOiBwYXNzd29yZAogICAgICAtIG5hbWU6\
-IHZlcnNpb24KICAgICAgICB0aXRsZTogVmVyc2lvbgogICAgICAgIGRlZmF1bHQ6IDAuNi4wCiAg\
-ICAgICAgZW51bTogWycwLjYuMCcsICcwLjUuMCcsICcwLjQuMCcsICcwLjMuMCcsICcwLjIuMCcs\
-ICcwLjEuMCddCiAgICAgICAgdHlwZTogZW51bQogICAgICAtIG5hbWU6IHJlZ2lzdHJ5X3VybAog\
-ICAgICAgIHRpdGxlOiBSZWdpc3RyeSBVUkwKICAgICAgICBkZWZhdWx0OiAiZG9ja2VyLmlvL2t1\
-YmV2aXJ0IgogICAgICAgIHR5cGU6IHN0cmluZwogICAgICAtIG5hbWU6IHJlZ2lzdHJ5X25hbWVz\
-cGFjZQogICAgICAgIHRpdGxlOiBSZWdpc3RyeSBOYW1lc3BhY2UKICAgICAgICBkZWZhdWx0OiBr\
-dWJlLXN5c3RlbQogICAgICAgIHR5cGU6IHN0cmluZwo="
+IHZlcnNpb24KICAgICAgICB0aXRsZTogVmVyc2lvbgogICAgICAgIGRlZmF1bHQ6IDAuNy4wLWFs\
+cGhhLjUKICAgICAgICBlbnVtOiBbJzAuNy4wLWFscGhhLjUnLCAnMC43LjAtYWxwaGEuNCcsICcw\
+LjcuMC1hbHBoYS4yJywgJzAuNi4wJywgJzAuNS4wJywgJzAuNC4wJywgJzAuMy4wJywgJzAuMi4w\
+JywgJzAuMS4wJ10KICAgICAgICB0eXBlOiBlbnVtCiAgICAgIC0gbmFtZTogcmVnaXN0cnlfdXJs\
+CiAgICAgICAgdGl0bGU6IFJlZ2lzdHJ5IFVSTAogICAgICAgIGRlZmF1bHQ6ICJkb2NrZXIuaW8v\
+a3ViZXZpcnQiCiAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgIC0gbmFtZTogcmVnaXN0cnlfbmFt\
+ZXNwYWNlCiAgICAgICAgdGl0bGU6IFJlZ2lzdHJ5IE5hbWVzcGFjZQogICAgICAgIGRlZmF1bHQ6\
+IGt1YmUtc3lzdGVtCiAgICAgICAgdHlwZTogc3RyaW5nCg=="
 
-
-RUN yum install -y iptables wget patch \
+RUN yum install -y iptables wget \
     && yum clean all
 
 ### UPSTREAM ONLY ###
@@ -45,9 +45,6 @@ RUN mkdir /opt/apb/kubevirt-templates \
 
 RUN ansible-galaxy install -r /opt/ansible/requirements.yml \
     && cp -r ./kubevirt-templates /etc/ansible/roles/kubevirt-ansible/roles/kubevirt/templates/
-
-COPY entrypoint.patch /entrypoint.patch
-RUN patch /usr/bin/entrypoint.sh -p3 < /entrypoint.patch
 ### UPSTREAM ONLY ###
 
 COPY playbooks/* /opt/apb/actions/
