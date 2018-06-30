@@ -1,3 +1,4 @@
+---
 version: 1.0
 name: virtualization
 description: KubeVirt installer
@@ -17,10 +18,11 @@ metadata:
 plans:
   - name: default
     description: Default deployment plan for kubevirt-apb using existing
+    free: true
     metadata:
       displayName: Default
       longDescription: This plan deploys kubevirt
-    free: True
+      cost: $0.00
     parameters:
       - title: OpenShift Admin User
         name: admin_user
@@ -36,9 +38,11 @@ plans:
         default: 0.6.0
         enum: ['0.6.0', '0.5.0', '0.4.0', '0.3.0', '0.2.0', '0.1.0']
         type: enum
-      - title: Registry URL
-        name: registry_url
+      - name: registry_url
+        title: Registry URL
+        default: "docker.io/kubevirt"
         type: string
-      - title: Registry Namespace
-        name: registry_namespace
+      - name: registry_namespace
+        title: Registry Namespace
+        default: kube-system
         type: string
