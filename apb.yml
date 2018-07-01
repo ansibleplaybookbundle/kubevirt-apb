@@ -40,7 +40,7 @@ plans:
         type: enum
       - name: registry_url
         title: Registry URL
-        default: "docker.io/kubevirt"
+        default: "docker.io"
         type: string
       - name: registry_namespace
         title: Registry Namespace
