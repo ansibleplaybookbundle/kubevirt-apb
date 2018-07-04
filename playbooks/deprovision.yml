@@ -10,3 +10,4 @@
 - import_playbook: "/etc/ansible/roles/kubevirt-ansible/playbooks/kubevirt.yml"
   vars:
     apb_action: deprovision
+    version: "{{ version }}"
