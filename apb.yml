@@ -44,5 +44,5 @@ plans:
         type: string
       - name: registry_namespace
         title: Registry Namespace
-        default: kube-system
+        default: kubevirt
         type: string

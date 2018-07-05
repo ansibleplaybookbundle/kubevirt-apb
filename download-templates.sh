@@ -28,6 +28,7 @@ for item in ${version}; do
     curl -f -o "${KUBEVIRT_TEMPLATE_DIR}/${item}/vm-template-rhel7.yaml" "${vm_template_url}/${item}/${vm_samples_dir}/vm-template-rhel7.yaml"
     curl -f -o "${KUBEVIRT_TEMPLATE_DIR}/${item}/vm-template-windows2012r2.yaml" "${vm_template_url}/${item}/${vm_samples_dir}/vm-template-windows2012r2.yaml"
     curl -f -o "${KUBEVIRT_TEMPLATE_DIR}/${item}/demo-content.yaml" "${manifest_url}/${item}/demo-content.yaml"
+    wget -O "${KUBEVIRT_TEMPLATE_DIR}/${item}/kubevirt.yaml.j2" "${manifest_url}/${item}/kubevirt.yaml.j2"
     wget -O "${KUBEVIRT_TEMPLATE_DIR}/${item}/kubevirt.yaml" "${manifest_url}/${item}/kubevirt.yaml"
     echo "Download for ${item} complete"
 done
