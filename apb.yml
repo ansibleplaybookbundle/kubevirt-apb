@@ -35,8 +35,8 @@ plans:
         display_type: password
       - name: version
         title: Version
-        default: 0.7.0
-        enum: ['0.7.0', '0.6.0', '0.5.0', '0.4.0', '0.3.0', '0.2.0', '0.1.0']
+        default: 0.6.2
+        enum: ['0.6.2']
         type: enum
       - name: registry_url
         title: Registry URL
