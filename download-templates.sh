@@ -9,18 +9,19 @@ manifest_url="https://github.com/kubevirt/kubevirt/releases/download"
 
 if [ -z "${version}" ]; then
    version=$(git ls-remote --tags https://github.com/kubevirt/kubevirt |  sed 's/.*refs\/tags\///g' | grep -v '\^{}')
-   major=`echo $version | cut -d. -f2`
-fi
-
-if [ "$major" -lt "7" ] ; then 
-  vm_samples_dir="cluster"
-else
-  vm_samples_dir="cluster/examples"
 fi
 
 for item in ${version}; do
     echo ${item}
     echo "Downloading template for ${item}"
+
+    major=`echo ${item} | cut -d. -f2`
+    if [ "$major" -lt "7" ] ; then
+	vm_samples_dir="cluster"
+    else
+	vm_samples_dir="cluster/examples"
+    fi
+
     if [ ! -d "${item}" ]; then
     	mkdir "${KUBEVIRT_TEMPLATE_DIR}/${item}"
     fi
