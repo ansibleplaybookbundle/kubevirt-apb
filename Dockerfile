@@ -43,7 +43,7 @@ RUN mkdir /opt/apb/kubevirt-templates \
     && download-templates /opt/apb/kubevirt-templates
 
 RUN ansible-galaxy install -r /opt/ansible/requirements.yml \
-    && cp -r ./kubevirt-templates /etc/ansible/roles/kubevirt-ansible/roles/kubevirt/templates/
+    && cp -r /opt/apb/kubevirt-templates /etc/ansible/roles/kubevirt-ansible/roles/kubevirt/templates/
 ### UPSTREAM ONLY ###
 
 COPY playbooks/* /opt/apb/actions/
