@@ -16,7 +16,10 @@ for item in ${version}; do
     echo "Downloading template for ${item}"
 
     major=`echo ${item} | cut -d. -f2`
-    if [ "$major" -lt "7" ] ; then
+    minor=`echo ${item} | cut -d. -f3`
+    if [ "$major" -lt "7" ] && [ "$minor" -gt 0 ]; then
+	vm_samples_dir="cluster/examples"
+    elif [ "$major" -lt "7" ] && [ "$minor" -gt 0 ]; then
 	vm_samples_dir="cluster"
     else
 	vm_samples_dir="cluster/examples"

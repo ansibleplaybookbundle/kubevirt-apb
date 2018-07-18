@@ -9,3 +9,5 @@ spec:
   parameters:
     admin_user: admin
     admin_password: admin
+    registry_url: docker.io
+    registry_namespace: ansibleplaybookbundle
