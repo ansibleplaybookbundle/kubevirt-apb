@@ -39,7 +39,7 @@ RUN yum install -y iptables wget \
 ### UPSTREAM ONLY ###
 COPY requirements.yml /opt/ansible/requirements.yml
 COPY download-templates.sh /usr/bin/download-templates
-RUN mkdir /opt/apb/kubevirt-templates \
+RUN mkdir /opt/apb/kubevirt-templates /opt/apb/kubevirt-templates/cdi \
     && download-templates /opt/apb/kubevirt-templates
 
 RUN ansible-galaxy install -r /opt/ansible/requirements.yml \
