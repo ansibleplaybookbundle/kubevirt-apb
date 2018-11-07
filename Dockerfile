@@ -25,25 +25,28 @@ cgogICAgICAgIG5hbWU6IGFkbWluX3VzZXIKICAgICAgICB0eXBlOiBzdHJpbmcKICAgICAgICBy\
 ZXF1aXJlZDogdHJ1ZQogICAgICAtIHRpdGxlOiBPcGVuU2hpZnQgQWRtaW4gUGFzc3dvcmQKICAg\
 ICAgICBuYW1lOiBhZG1pbl9wYXNzd29yZAogICAgICAgIHR5cGU6IHN0cmluZwogICAgICAgIHJl\
 cXVpcmVkOiB0cnVlCiAgICAgICAgZGlzcGxheV90eXBlOiBwYXNzd29yZAogICAgICAtIG5hbWU6\
-IHZlcnNpb24KICAgICAgICB0aXRsZTogVmVyc2lvbgogICAgICAgIGRlZmF1bHQ6IDAuNy4wCiAg\
-ICAgICAgZW51bTogWycwLjcuMCcsICcwLjYuMCcsICcwLjUuMCcsICcwLjQuMCcsICcwLjMuMCcs\
-ICcwLjIuMCcsICcwLjEuMCddCiAgICAgICAgdHlwZTogZW51bQogICAgICAtIG5hbWU6IHJlZ2lz\
-dHJ5X3VybAogICAgICAgIHRpdGxlOiBSZWdpc3RyeSBVUkwKICAgICAgICBkZWZhdWx0OiAiZG9j\
-a2VyLmlvIgogICAgICAgIHR5cGU6IHN0cmluZwogICAgICAtIG5hbWU6IHJlZ2lzdHJ5X25hbWVz\
-cGFjZQogICAgICAgIHRpdGxlOiBSZWdpc3RyeSBOYW1lc3BhY2UKICAgICAgICBkZWZhdWx0OiBr\
-dWJldmlydAogICAgICAgIHR5cGU6IHN0cmluZwo="
+IHZlcnNpb24KICAgICAgICB0aXRsZTogVmVyc2lvbgogICAgICAgIGRlZmF1bHQ6IDAuOS4zCiAg\
+ICAgICAgZW51bTogWycwLjkuMycsICcwLjkuMCcsICcwLjguMCcsICcwLjcuMCcsICcwLjYuMCcs\
+ICcwLjUuMCcsICcwLjQuMCcsICcwLjMuMCcsICcwLjIuMCcsICcwLjEuMCddCiAgICAgICAgdHlw\
+ZTogZW51bQogICAgICAtIG5hbWU6IHJlZ2lzdHJ5X3VybAogICAgICAgIHRpdGxlOiBSZWdpc3Ry\
+eSBVUkwKICAgICAgICBkZWZhdWx0OiAiZG9ja2VyLmlvIgogICAgICAgIHR5cGU6IHN0cmluZwog\
+ICAgICAtIG5hbWU6IHJlZ2lzdHJ5X25hbWVzcGFjZQogICAgICAgIHRpdGxlOiBSZWdpc3RyeSBO\
+YW1lc3BhY2UKICAgICAgICBkZWZhdWx0OiBrdWJldmlydAogICAgICAgIHR5cGU6IHN0cmluZwo="
+
 
 RUN yum install -y iptables wget \
     && yum clean all
 
 ### UPSTREAM ONLY ###
-COPY requirements.yml /opt/ansible/requirements.yml
 COPY download-templates.sh /usr/bin/download-templates
 RUN mkdir /opt/apb/kubevirt-templates /opt/apb/kubevirt-templates/cdi \
     && download-templates /opt/apb/kubevirt-templates
 
+COPY requirements.yml /opt/ansible/requirements.yml
+
 RUN ansible-galaxy install -r /opt/ansible/requirements.yml \
     && cp -r ./kubevirt-templates /etc/ansible/roles/kubevirt-ansible/roles/kubevirt/templates/
+
 ### UPSTREAM ONLY ###
 
 COPY playbooks/* /opt/apb/actions/
