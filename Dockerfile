@@ -50,7 +50,7 @@ RUN ansible-galaxy install -r /opt/ansible/requirements.yml \
 ### UPSTREAM ONLY ###
 
 COPY playbooks/* /opt/apb/actions/
-COPY inventory /etc/ansible/hosts
+COPY inventory /opt/apb/inventory/hosts
 RUN chmod -R g=u /opt/{ansible,apb} /etc/ansible/roles
 
 USER apb
